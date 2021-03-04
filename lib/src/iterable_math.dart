@@ -21,10 +21,12 @@ extension IterableMathDouble on Iterable<double> {
   }
 
   /// Returns the highest value in the list.
-  double get highest => reduce((value, element) => element > value ? element : value);
+  double get highest =>
+      reduce((value, element) => element > value ? element : value);
 
   /// Returns the lowest value in the list.
-  double get lowest => reduce((value, element) => element < value ? element : value);
+  double get lowest =>
+      reduce((value, element) => element < value ? element : value);
 }
 
 extension IterableMathDoubleNullable on Iterable<double?> {
@@ -84,10 +86,12 @@ extension IterableMathInt on Iterable<int> {
   }
 
   /// Returns the highest value in the list.
-  int get highest => reduce((value, element) => element > value ? element : value);
+  int get highest =>
+      reduce((value, element) => element > value ? element : value);
 
   /// Returns the lowest value in the list.
-  int get lowest => reduce((value, element) => element < value ? element : value);
+  int get lowest =>
+      reduce((value, element) => element < value ? element : value);
 }
 
 /// Extends `Iterable<int>` with additional basic methods.
@@ -148,10 +152,12 @@ extension IterableMathNum on Iterable<num> {
   }
 
   /// Returns the highest value in the list.
-  num get highest => reduce((value, element) => element > value ? element : value);
+  num get highest =>
+      reduce((value, element) => element > value ? element : value);
 
   /// Returns the lowest value in the list.
-  num get lowest => reduce((value, element) => element < value ? element : value);
+  num get lowest =>
+      reduce((value, element) => element < value ? element : value);
 }
 
 /// Extends `Iterable<num>` with additional basic methods.
