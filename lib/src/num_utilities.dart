@@ -27,6 +27,15 @@ extension NumUtilities on num {
   /// ```
   num roundTo(num value) =>
       this is double ? (this * value).round() / value : this;
+
+  /// Flips the sign of this number.
+  num get invert => this * -1;
+}
+
+/// Extends [double] with additional basic methods.
+extension IntUtilities on int {
+  /// Flips the sign of this number.
+  int get invert => this * -1;
 }
 
 /// Extends [double] with additional basic methods.
@@ -36,4 +45,7 @@ extension DoubleUtilities on double {
   /// (this * value).round() / value
   /// ```
   double roundTo(num value) => (this * value).round() / value;
+
+  /// Flips the sign of this number.
+  double get invert => this * -1;
 }
