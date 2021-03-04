@@ -9,15 +9,9 @@ extension NumUtilities on num {
   /// ```dart
   /// (this * roundTo).round() / roundTo == (other * roundTo).round() / roundTo
   /// ```
-  bool equals(num other, [num roundTo]) {
-    if (roundTo == null || this is int && other is int) {
-      return this == other;
-    }
-
-    if (this is int) {
-      return this == other.roundTo(roundTo);
-    }
-
+  bool equals(num other, [num? roundTo]) {
+    if (roundTo == null || (this is int && other is int)) return this == other;
+    if (this is int) return this == other.roundTo(roundTo);
     return this.roundTo(roundTo) == other.roundTo(roundTo);
   }
 
