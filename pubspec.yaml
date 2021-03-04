@@ -2,12 +2,12 @@ name: num_utilities
 description: >-
   A collection of extension methods for nums, ints, and doubles;
   and iterables of nums, ints, and doubles.
-version: 0.1.0
+version: 1.0.0
 homepage: https://github.com/james-alex/num_utilities
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dev_dependencies:
-  pedantic: ^1.9.2
-  test: ^1.15.7
+  pedantic: ^1.11.0
+  test: ^1.16.5
