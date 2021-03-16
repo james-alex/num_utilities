@@ -86,6 +86,20 @@ void main() {
         final list = <num>[1, 2, 3, 4, 5];
         expect(list.lowest, equals(1));
       });
+
+      test('isIncremental', () {
+        expect(<num>[1, 2, 3, 4, 5].isIncremental, equals(true));
+        expect(<num>[5, 4, 3, 2, 1].isIncremental, equals(false));
+        expect(<num>[3, 1, 2, 5, 4].isIncremental, equals(false));
+        expect(<num>[1, 1, 2, 2, 3].isIncremental, equals(true));
+      });
+
+      test('isDecremental', () {
+        expect(<num>[1, 2, 3, 4, 5].isDecremental, equals(false));
+        expect(<num>[5, 4, 3, 2, 1].isDecremental, equals(true));
+        expect(<num>[3, 1, 2, 5, 4].isDecremental, equals(false));
+        expect(<num>[3, 3, 2, 2, 1].isDecremental, equals(true));
+      });
     });
   });
 }

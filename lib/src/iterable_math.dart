@@ -73,6 +73,24 @@ extension IterableMathNum on Iterable<num> {
 
   /// Returns the lowest value in the list.
   num get lowest => cast<num?>().lowest!;
+
+  /// Returns `true` if every number in the list is greater
+  /// than or equal to the number preceding it.
+  bool get isIncremental {
+    for (var i = 0; i < length - 1; i++) {
+      if (elementAt(i) > elementAt(i + 1)) return false;
+    }
+    return true;
+  }
+
+  /// Returns `true` if every number in the list is less
+  /// than or equal to than the number preceding it.
+  bool get isDecremental {
+    for (var i = 0; i < length - 1; i++) {
+      if (elementAt(i) < elementAt(i + 1)) return false;
+    }
+    return true;
+  }
 }
 
 /// Extends `Iterable<num>` with additional basic methods.
