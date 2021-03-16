@@ -6,7 +6,8 @@ extension IterableMathDouble on Iterable<double> {
   double sum() => cast<num?>().sum().toDouble();
 
   /// Returns the sum of the absolute values in the iterable.
-  double absSum([bool invert = false]) => cast<num?>().absSum(invert).toDouble();
+  double absSum([bool invert = false]) =>
+      cast<num?>().absSum(invert).toDouble();
 
   /// Returns the highest value in the list.
   double get highest => cast<num?>().highest!.toDouble();
