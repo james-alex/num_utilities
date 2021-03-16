@@ -2,7 +2,7 @@ name: num_utilities
 description: >-
   A collection of extension methods for nums, ints, and doubles;
   and iterables of nums, ints, and doubles.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/james-alex/num_utilities
 
 environment:
