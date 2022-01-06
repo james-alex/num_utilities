@@ -49,6 +49,15 @@ final number = 5.556;
 print(number.roundTo(10)); // 5.6
 ```
 
+### roundToPrecision
+
+[roundToPrecision] rounds the number to the specified number of decimal points.
+
+```dart
+final number = 5.5567893;
+print(number.roundToPrecision(3)); // 5.557
+```
+
 ## Iterables
 
 Iterables of [num]s, [int]s, and [double]s were extended

@@ -1,3 +1,7 @@
+## [1.0.2] - January 6, 2022
+
+* Added the [roundToPrecision] method to [num] and [double].
+
 ## [1.0.1] - March 15, 2021
 
 * Updated every method and getter to cast to and reference a single
