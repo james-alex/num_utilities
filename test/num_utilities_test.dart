@@ -16,6 +16,13 @@ void main() {
       final integer = 10;
       expect(integer.roundTo(10), equals(10));
     });
+
+    test('roundToPrecision', () {
+      final number = 5.5567893;
+      expect(number.roundToPrecision(3), equals(5.557));
+      final integer = 10;
+      expect(integer.roundToPrecision(3), equals(10));
+    });
   });
 
   group('IterableMath', () {

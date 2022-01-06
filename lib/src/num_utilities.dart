@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 /// Extends [num] with additional basic methods.
 extension NumUtilities on num {
   /// `true` if the number is positive; otherwise, `false`.
@@ -22,6 +24,12 @@ extension NumUtilities on num {
   num roundTo(num value) =>
       this is double ? (this * value).round() / value : this;
 
+  /// Rounds this number to [precision] decimal points.
+  num roundToPrecision(int precision) {
+    final factor = math.pow(10, precision);
+    return (this * factor).round() / factor;
+  }
+
   /// Flips the sign of this number.
   num get invert => this * -1;
 }
@@ -39,6 +47,12 @@ extension DoubleUtilities on double {
   /// (this * value).round() / value
   /// ```
   double roundTo(num value) => (this * value).round() / value;
+
+  /// Rounds this double to [precision] decimal points.
+  num roundToPrecision(int precision) {
+    final factor = math.pow(10, precision);
+    return (this * factor).round() / factor;
+  }
 
   /// Flips the sign of this number.
   double get invert => this * -1;
