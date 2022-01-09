@@ -49,7 +49,7 @@ extension DoubleUtilities on double {
   double roundTo(num value) => (this * value).round() / value;
 
   /// Rounds this double to [precision] decimal points.
-  num roundToPrecision(int precision) {
+  double roundToPrecision(int precision) {
     final factor = math.pow(10, precision);
     return (this * factor).round() / factor;
   }
