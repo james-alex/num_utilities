@@ -1,3 +1,7 @@
+## [1.0.3] - July 11, 2022
+
+* Added the [isWithin] and [isWithinRange] methods to [num].
+
 ## [1.0.2] - January 6, 2022
 
 * Added the [roundToPrecision] method to [num] and [double].
