@@ -35,12 +35,6 @@ extension NumUtilities on num {
 }
 
 /// Extends [double] with additional basic methods.
-extension IntUtilities on int {
-  /// Flips the sign of this number.
-  int get invert => this * -1;
-}
-
-/// Extends [double] with additional basic methods.
 extension DoubleUtilities on double {
   /// Rounds this double by [value]:
   /// ```dart
