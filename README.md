@@ -40,6 +40,33 @@ print(numA.equals(numB)); // false
 print(numA.equals(numB, 100)); // true
 ```
 
+### isWithin
+
+[isWithin] returns `true` if the number matches or is within the range
+of any of the parts defined in the provided [expression].
+
+The provided [expression] must be a string of numbers and/or ranges
+separated by commas.
+
+```dart
+final value = 7;
+print(value.isWithin('0,2,4,6')); // false
+print(value.isWithin('1,2,6-8,10')); // true
+print(value.isWithin('0-4,7,12-15')); // true
+```
+
+### isWithinRange
+
+[isWithinRange] returns `true` if this number is within the range of the
+provided [start] and [end] values.
+
+```dart
+final value = 7;
+print(value.isWithinRange(4, 8)); // true
+print(value.isWithinRange(8, 4)); // true
+print(value.isWithinRange(2, 6)); // false
+```
+
 ### roundTo
 
 [roundTo] rounds the number by the value: `(number * value).round() / value`
