@@ -23,6 +23,13 @@ void main() {
       final integer = 10;
       expect(integer.roundToPrecision(3), equals(10));
     });
+
+    test('invert', () {
+      final number = 5.556;
+      expect(number.invert, equals(-5.556));
+      final integer = 10;
+      expect(integer.invert, equals(-10));
+    });
   });
 
   group('IterableMath', () {
