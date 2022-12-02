@@ -92,6 +92,83 @@ extension DoubleUtilities on double {
   double get invert => this * -1;
 }
 
+/// A range of numbers between defined minimum and maximum values.
+class Range<T extends num> {
+  /// A range of numbers between defined minimum and maximum values.
+  const Range(this.min, this.max) : assert(min < max);
+
+  /// The minimum number in the range.
+  final T min;
+
+  /// The maximum number in the range.
+  final T max;
+
+  T get span => (max - min) as T;
+
+  /// Generates a random number between [min],
+  /// inclusive, and [max], exclusive.
+  T random([int? seed]) => _random(math.Random(seed));
+
+  /// Generates a cryptographically secure random number
+  /// between [min], inclusive, and [max], exclusive.
+  T secureRandom() => _random(math.Random.secure());
+
+  T _random(math.Random random) => min is double || max is double
+      ? (random.nextDouble() * span + min) as T
+      : (random.nextInt(span as int) + min) as T;
+
+  /// Returns a list of numbers spanning a defined number of
+  /// [steps] between the [min] and [max] values.
+  ///
+  /// If [inclusive] is `true`, the [max] value will be included in the
+  /// returned list, and the length of the list will be `steps + 1`.
+  ///
+  /// [randomize] can be used to apply randomness to the output numbers,
+  /// where a value of `0.0` doesn't apply any randomness to the numbers,
+  /// while a value of `1.0` will randomize the output numbers within the
+  /// entire range of the radius around each step.
+  List<double> interpolate(
+    int steps, {
+    bool inclusive = false,
+    double randomize = 0.0,
+    int? seed,
+  }) {
+    assert(steps > 0);
+    assert(randomize >= 0.0 && randomize <= 1.0);
+    math.Random? random;
+    final offset = inclusive ? 1 : 0;
+    final slice = span / steps;
+    final radius = slice / 2;
+    final list = List<double>.generate(steps - offset, (index) {
+      var randomness = 0.0;
+      if (randomize > 0.0) {
+        random ??= math.Random(seed);
+        randomness = radius - (random!.nextDouble() * slice);
+        if (index == 0 && randomness.isNegative) randomness *= -1;
+      }
+      return ((index + offset) * slice) + min + randomness;
+    });
+    if (inclusive) {
+      if (randomize == 0.0) {
+        list.insert(0, min.toDouble());
+        list.add(max.toDouble());
+      } else {
+        random ??= math.Random(seed);
+        list.insert(0, (slice / 2) * random!.nextDouble());
+        list.add(max - (slice / 2) * random!.nextDouble());
+      }
+    }
+    return list;
+  }
+
+  @override
+  operator ==(Object other) =>
+      other is Range && min == other.min && max == other.max;
+
+  @override
+  int get hashCode => min.hashCode ^ max.hashCode;
+}
+
 /// An error thrown when an invalid expression is
 /// provided to the `isWithin` extension method.
 class InvalidExpressionError extends UnsupportedError {

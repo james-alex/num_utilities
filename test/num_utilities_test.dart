@@ -1,5 +1,7 @@
-import 'package:test/test.dart';
+import 'dart:math';
+import 'package:collection/collection.dart' show ListEquality;
 import 'package:num_utilities/num_utilities.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('NumUtilities', () {
@@ -69,6 +71,94 @@ void main() {
       expect(number.invert, equals(-5.556));
       final integer = 10;
       expect(integer.invert, equals(-10));
+    });
+  });
+
+  group('Range', () {
+    test('span', () {
+      expect(Range(32, 96).span, equals(64));
+      expect(Range(2.5, 7.5).span, equals(5.0));
+    });
+
+    test('random', () {
+      final random = Random();
+      for (var i = 0; i < 10000; i++) {
+        late num randomValue;
+        late num min;
+        late num max;
+        switch (i % 2) {
+          case 0:
+            min = random.nextInt(100);
+            max = min + random.nextInt(100) + 1;
+            randomValue = Range(min as int, max as int)
+                .random(DateTime.now().millisecondsSinceEpoch);
+            break;
+          case 1:
+            min = random.nextDouble() * 100;
+            max = min + (random.nextDouble() * 100) + 1;
+            randomValue =
+                Range(min, max).random(DateTime.now().millisecondsSinceEpoch);
+            break;
+        }
+        expect(randomValue >= min, equals(true));
+        expect(randomValue < max, equals(true));
+      }
+    });
+
+    test('secureRandom', () {
+      final random = Random();
+      for (var i = 0; i < 10000; i++) {
+        late num randomValue;
+        late num min;
+        late num max;
+        switch (i % 2) {
+          case 0:
+            min = random.nextInt(100);
+            max = min + random.nextInt(100) + 1;
+            randomValue = Range(min as int, max as int).secureRandom();
+            break;
+          case 1:
+            min = random.nextDouble() * 100;
+            max = min + (random.nextDouble() * 100) + 1;
+            randomValue = Range(min, max).secureRandom();
+            break;
+        }
+        expect(randomValue >= min, equals(true));
+        expect(randomValue < max, equals(true));
+      }
+    });
+
+    group('interpolate', () {
+      test('default', () {
+        final range = Range(0, 10).interpolate(10);
+        final expectedRange = List<int>.generate(10, (index) => index);
+        expect(ListEquality().equals(range, expectedRange), equals(true));
+      });
+
+      test('inclusive', () {
+        final range = Range(0, 10).interpolate(10, inclusive: true);
+        final expectedRange = List<int>.generate(11, (index) => index);
+        expect(ListEquality().equals(range, expectedRange), equals(true));
+      });
+
+      test('randomized', () {
+        final range = Range(0, 10).interpolate(10, randomize: 1.0);
+        for (var i = 0; i < 10; i++) {
+          expect(range[i] >= i - 0.5 && range[i] < i + 0.5, equals(true));
+        }
+      });
+
+      test('inclusive & randomized', () {
+        final range =
+            Range(0, 10).interpolate(10, inclusive: true, randomize: 1.0);
+        for (var i = 0; i < 11; i++) {
+          expect(range[i] >= i - 0.5 && range[i] < i + 0.5, equals(true));
+        }
+      });
+    });
+
+    test('==', () {
+      expect(Range(0, 2) == Range(0, 2), equals(true));
     });
   });
 
