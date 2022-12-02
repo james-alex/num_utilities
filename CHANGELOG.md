@@ -1,3 +1,7 @@
+## [1.0.4] - December 1, 2022
+
+* Added the [Range] object.
+
 ## [1.0.3] - July 11, 2022
 
 * Added the [isWithin] and [isWithinRange] methods to [num].
