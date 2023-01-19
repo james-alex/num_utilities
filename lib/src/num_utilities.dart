@@ -103,7 +103,11 @@ class Range<T extends num> {
   /// The maximum number in the range.
   final T max;
 
+  /// The span this range covers. `max - min`.
   T get span => (max - min) as T;
+
+  /// The value at the center of the range.
+  double get center => min + (span / 2);
 
   /// Generates a random number between [min],
   /// inclusive, and [max], exclusive.
@@ -116,6 +120,9 @@ class Range<T extends num> {
   T _random(math.Random random) => min is double || max is double
       ? (random.nextDouble() * span + min) as T
       : (random.nextInt(span as int) + min) as T;
+
+  /// Returns the value within the range at the defined [delta].
+  double map(double delta) => (span * delta) + min;
 
   /// Returns a list of numbers spanning a defined number of
   /// [steps] between the [min] and [max] values.
