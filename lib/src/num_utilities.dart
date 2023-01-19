@@ -182,3 +182,8 @@ class InvalidExpressionError extends UnsupportedError {
   InvalidExpressionError(String expression)
       : super('\'$expression\' is not a valid expression.');
 }
+
+extension RandomSign on math.Random {
+  /// Randomly generates a bool value and returns it as a `1` or `-1`.
+  int sign() => nextBool() ? 1 : -1;
+}
