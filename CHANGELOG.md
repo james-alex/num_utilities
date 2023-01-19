@@ -1,3 +1,9 @@
+## [1.0.5] - January 18, 2023
+
+* Added the [center] and [map] methods to [Range].
+
+* Added the [sign] extension method to [Random].
+
 ## [1.0.4] - December 1, 2022
 
 * Added the [Range] object.
